@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正在加载 - 林宇欣</title>
+    <style>
+        /* 加载页面的样式 */
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #F2EFE9 0%, #e8e4de 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Noto Sans SC', sans-serif;
+            overflow: hidden;
+        }
+
+        .loader-container {
+            text-align: center;
+            max-width: 500px;
+            padding: 40px;
+        }
+
+        /* 旋转动画 */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        .loader {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+
+        .loader-circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 3px solid transparent;
+            border-radius: 50%;
+        }
+
+        .loader-circle-1 {
+            border-top-color: #8E9775;
+            animation: spin 2s linear infinite;
+        }
+
+        .loader-circle-2 {
+            border-right-color: #D4A373;
+            animation: spin 1.5s linear infinite reverse;
+        }
+
+        .loader-circle-3 {
+            border-bottom-color: #4A4E69;
+            width: 60px;
+            height: 60px;
+            top: 10px;
+            left: 10px;
+            animation: spin 1s linear infinite;
+        }
+
+        .loader-content {
+            animation: fadeIn 1s ease-out;
+        }
+
+        h1 {
+            color: #4A4E69;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #8E9775;
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            opacity: 0.8;
+        }
+
+        .progress-container {
+            width: 300px;
+            height: 6px;
+            background: rgba(142, 151, 117, 0.2);
+            border-radius: 3px;
+            margin: 30px auto;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(to right, #8E9775, #D4A373);
+            border-radius: 3px;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .percentage-container {
+            margin-top: 15px;
+            margin-bottom: 40px;
+        }
+
+        .percentage-text {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #D4A373;
+            text-shadow: 0 2px 10px rgba(212, 163, 115, 0.2);
+            letter-spacing: -1px;
+        }
+
+        .percentage-label {
+            font-size: 1rem;
+            color: #8E9775;
+            margin-top: 5px;
+            font-weight: 500;
+        }
+
+        .skip-btn {
+            background: rgba(142, 151, 117, 0.1);
+            border: 1px solid rgba(142, 151, 117, 0.3);
+            color: #8E9775;
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+            font-family: inherit;
+            font-weight: 500;
+        }
+
+        .skip-btn:hover {
+            background: rgba(142, 151, 117, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(142, 151, 117, 0.1);
+        }
+
+        /* 淡出动画 */
+        .fade-out {
+            animation: fadeOut 0.8s ease forwards;
+        }
+
+        /* 语言切换样式 */
+        .lang-zh { display: block; }
+        .lang-en { display: none; }
+        body.en-mode .lang-zh { display: none; }
+        body.en-mode .lang-en { display: block; }
+
+        /* 语言切换按钮 */
+        .lang-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(142, 151, 117, 0.3);
+            color: #8E9775;
+            padding: 6px 12px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .lang-switcher:hover {
+            background: rgba(142, 151, 117, 0.2);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .loader-container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+                margin-bottom: 40px;
+            }
+            
+            .percentage-text {
+                font-size: 2.5rem;
+            }
+            
+            .progress-container {
+                width: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .percentage-text {
+                font-size: 2rem;
+            }
+            
+            .progress-container {
+                width: 200px;
+            }
+            
+            .loader {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 30px;
+            }
+            
+            .loader-circle-3 {
+                width: 45px;
+                height: 45px;
+                top: 7.5px;
+                left: 7.5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 语言切换按钮 -->
+    <button class="lang-switcher" onclick="toggleLanguage()">
+        <span class="lang-zh">EN</span>
+        <span class="lang-en">中文</span>
+    </button>
+
+    <div class="loader-container" id="loaderContainer">
+        <div class="loader">
+            <div class="loader-circle loader-circle-1"></div>
+            <div class="loader-circle loader-circle-2"></div>
+            <div class="loader-circle loader-circle-3"></div>
+        </div>
+        
+        <div class="loader-content">
+            <h1>
+                <span class="lang-zh">很高兴认识您^_^</span>
+                <span class="lang-en">Nice to meet you ~</span>
+            </h1>
+            <div class="subtitle">
+                <span class="lang-zh">欢迎来到林宇欣的小天地~🏡</span>
+                <span class="lang-en">Welcome to Lucy's corner! 🏡</span>
+            </div>
+            
+            <!-- 进度条 -->
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            
+            <!-- 百分比显示 -->
+            <div class="percentage-container">
+                <div class="percentage-text" id="percentageText">0%</div>
+                <div class="percentage-label">
+                    <span class="lang-zh">加载进度</span>
+                    <span class="lang-en">Loading Progress</span>
+                </div>
+            </div>
+            
+            <!-- 跳过按钮 -->
+            <button class="skip-btn" onclick="skipLoading()">
+                <span class="lang-zh">跳过加载</span>
+                <span class="lang-en">Skip Loading</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // 语言切换功能
+        function toggleLanguage() {
+            document.body.classList.toggle('en-mode');
+            const isEn = document.body.classList.contains('en-mode');
+            localStorage.setItem('language', isEn ? 'en' : 'zh');
+        }
+
+        // 加载进度模拟
+        let progress = 0;
+        let isCompleting = false;
+        const progressBar = document.getElementById('progressBar');
+        const percentageText = document.getElementById('percentageText');
+        const loaderContainer = document.getElementById('loaderContainer');
+        
+        // 动态更新百分比
+        function updateProgress() {
+            if (isCompleting) return;
+            
+            // 使用缓动函数让进度更自然
+            const increment = easeInOutCubic(progress/100) * 15 + 2;
+            progress = Math.min(progress + increment, 100);
+            
+            // 更新进度条和百分比
+            progressBar.style.width = progress + '%';
+            percentageText.textContent = Math.round(progress) + '%';
+            
+            // 检查是否完成
+            if (progress >= 100) {
+                completeLoading();
+                return;
+            }
+            
+            // 动态调整更新速度（开始快，后面慢）
+            const baseDelay = 100;
+            const slowFactor = (100 - progress) / 100; // 0-1，越接近100越小
+            const delay = baseDelay * (0.5 + slowFactor * 0.5);
+            
+            // 设置下一次更新
+            setTimeout(updateProgress, delay);
+        }
+        
+        // 缓动函数 - 让动画更自然
+        function easeInOutCubic(x) {
+            return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+        }
+        
+function completeLoading() {
+    if (isCompleting) return;
+    isCompleting = true;
+    
+    // 确保进度条和百分比都显示100%
+    progressBar.style.width = '100%';
+    percentageText.textContent = '100%';
+    
+    // 添加淡出动画
+    setTimeout(() => {
+        loaderContainer.classList.add('fade-out');
+    }, 300);
+    
+    // 延迟跳转，让用户看到完成状态
+    setTimeout(() => {
+        window.location.href = "index.html?from=loading";
+    }, 800);
+}        
+function skipLoading() {
+    if (isCompleting) return;
+    isCompleting = true;
+    
+    // 立即完成进度
+    progress = 100;
+    progressBar.style.width = '100%';
+    percentageText.textContent = '100%';
+    
+    // 快速淡出动画
+    setTimeout(() => {
+        loaderContainer.classList.add('fade-out');
+    }, 150);
+    
+    // 快速跳转
+    setTimeout(() => {
+        window.location.href = "index.html?from=loading";
+    }, 300);
+}
+        
+        // 初始化加载
+        function initLoading() {
+            // 检查保存的语言设置
+            const savedLang = localStorage.getItem('language');
+            if (savedLang === 'en') {
+                document.body.classList.add('en-mode');
+            }
+            
+            // 延迟开始加载，让用户能看到初始状态
+            setTimeout(() => {
+                updateProgress();
+            }, 500);
+            
+            // 超时保护（8秒后强制跳转）
+            setTimeout(() => {
+                if (!isCompleting) {
+                    completeLoading();
+                }
+            }, 8000);
+        }
+        
+        // 页面加载完成后开始
+        document.addEventListener('DOMContentLoaded', initLoading);
+        
+        // 添加键盘快捷键支持
+        document.addEventListener('keydown', (event) => {
+            // 按ESC键跳过加载
+            if (event.key === 'Escape') {
+                skipLoading();
+            }
+            // 按空格键加速加载（测试用）
+            if (event.key === ' ' && !isCompleting) {
+                progress = Math.min(progress + 20, 100);
+                progressBar.style.width = progress + '%';
+                percentageText.textContent = Math.round(progress) + '%';
+                if (progress >= 100) completeLoading();
+                event.preventDefault(); // 防止空格键滚动页面
+            }
+        });
+        
+        // 点击屏幕任意位置也可跳过（移动端友好）
+        document.addEventListener('click', (event) => {
+            if (event.target === document.body || event.target === loaderContainer) {
+                skipLoading();
+            }
+        });
+    </script>
+</body>
+</html>

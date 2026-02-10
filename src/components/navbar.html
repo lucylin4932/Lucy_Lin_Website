@@ -1,0 +1,32 @@
+<!-- 导航栏组件 -->
+<header class="px-8 py-6 flex justify-between items-center">
+    <a href="#home" class="text-3xl font-bold tracking-tighter text-[#4A4E69] hover:opacity-70 transition-opacity" style="font-family: 'Playfair Display', serif;">
+        Lucy Lin
+    </a>
+    
+   <nav class="hidden md:flex items-center space-x-8 text-sm tracking-wide">
+<a href="#home" class="nav-link"><span class="lang-zh">首页</span><span class="lang-en">Home</span></a>
+<a href="#education" class="nav-link"><span class="lang-zh">教育背景</span><span class="lang-en">Education</span></a>
+<a href="#experience" class="nav-link"><span class="lang-zh">工作经历</span><span class="lang-en">Experience</span></a>
+<a href="#projects" class="nav-link"><span class="lang-zh">项目经历</span><span class="lang-en">Projects</span></a>
+<a href="#skills" class="nav-link"><span class="lang-zh">技能工具</span><span class="lang-en">Skills</span></a>
+<a href="#contact" class="nav-link"><span class="lang-zh">联系方式</span><span class="lang-en">Contact</span></a>
+        
+        <!-- 添加秘密花园按钮 -->
+        <a href="https://example.com/secret-garden" target="_blank" 
+           class="nav-link flex items-center gap-1 text-[#D4A373] hover:text-[#c1925a] font-semibold">
+            <i data-lucide="flower" class="w-4 h-4"></i>
+            <span class="lang-zh">秘密花园</span>
+            <span class="lang-en">Secret Garden</span>
+        </a>
+        
+        <!-- 语言切换按钮 -->
+        <button onclick="toggleLanguage()" class="border border-[#4A4E69] text-[#4A4E69] px-4 py-1 rounded text-xs hover:bg-[#4A4E69] hover:text-white transition-all font-bold">
+            <span class="lang-zh">EN</span><span class="lang-en">中文</span>
+        </button>
+    </nav>
+    
+    <button class="md:hidden text-[#4A4E69]" onclick="toggleMobileMenu()">
+        <i data-lucide="menu" id="menu-icon"></i>
+    </button>
+</header>

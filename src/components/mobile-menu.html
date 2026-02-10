@@ -1,0 +1,38 @@
+<!-- 移动端菜单组件 -->
+<div id="mobile-menu" class="md:hidden fixed inset-0 z-[999] bg-[#F2EFE9] pt-24 px-8 hidden">
+    <div class="flex flex-col space-y-6">
+<a href="#home" class="text-xl font-medium text-[#4A4E69]" onclick="closeMobileMenu()">
+    <span class="lang-zh">首页</span><span class="lang-en">Home</span>
+</a>
+<a href="#education" class="text-xl font-medium text-[#4A4E69]" onclick="closeMobileMenu()">
+    <span class="lang-zh">教育背景</span><span class="lang-en">Education</span>
+</a>
+<a href="#experience" class="text-xl font-medium text-[#4A4E69]" onclick="closeMobileMenu()">
+    <span class="lang-zh">工作经历</span><span class="lang-en">Experience</span>
+</a>
+<a href="#projects" class="text-xl font-medium text-[#4A4E69]" onclick="closeMobileMenu()">
+    <span class="lang-zh">项目经历</span><span class="lang-en">Projects</span>
+</a>
+<a href="#skills" class="text-xl font-medium text-[#4A4E69]" onclick="closeMobileMenu()">
+    <span class="lang-zh">技能工具</span><span class="lang-en">Skills</span>
+</a>
+<a href="#contact" class="text-xl font-medium text-[#4A4E69]" onclick="closeMobileMenu()">
+    <span class="lang-zh">联系方式</span><span class="lang-en">Contact</span>
+</a>
+        
+        <!-- 移动端秘密花园按钮 -->
+        <a href="https://example.com/secret-garden" target="_blank" class="text-xl font-medium text-[#D4A373] hover:text-[#c1925a] flex items-center gap-2 mt-2" onclick="closeMobileMenu()">
+            <i data-lucide="flower" class="w-5 h-5"></i>
+            <span class="lang-zh">秘密花园</span>
+            <span class="lang-en">Secret Garden</span>
+        </a>
+        
+        <!-- 移动端语言切换按钮 -->
+        <button onclick="toggleLanguage()" class="border border-[#4A4E69] text-[#4A4E69] px-4 py-2 rounded text-sm hover:bg-[#4A4E69] hover:text-white transition-all font-bold mt-4">
+            <span class="lang-zh">English</span><span class="lang-en">中文</span>
+        </button>
+    </div>
+    <button class="absolute top-6 right-6 text-[#4A4E69]" onclick="closeMobileMenu()">
+        <i data-lucide="x"></i>
+    </button>
+</div>

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "edu-1",
+    "institution": "伦敦政治经济学院 (LSE)",
+    "institution_en": "London School of Economics",
+    "degree": "量化风控与金融 研究生",
+    "degree_en": "MSc Risk and Finance",
+    "period": "2022.09 - 2023.12",
+    "description": "一等学位 (Distinction) | 专业前5%",
+    "description_en": "Distinction | Top 5%",
+    "courses": "主修课程：创业融资、公司金融、财报估值、资产管理、量化风控与法规、量化证券分析、可持续金融与影响力投资",
+    "courses_en": "Course: Entrepreneurship finance, Corporate finance, Financial reporting, Portfolio management, Quantitative risk management and regulation of risk, Quantitative security analysis, Sustainable finance and impact investing"
+  },
+  {
+    "id": "edu-2",
+    "institution": "澳门大学 (UM)",
+    "institution_en": "University of Macau",
+    "degree": "金融工程 本科",
+    "degree_en": "BSc Financial Engineering",
+    "period": "2018.09 - 2022.08",
+    "description": "GPA 3.9/4.0 | 专业前三 | 荣誉学院 | 学生会干事",
+    "description_en": "GPA 3.9/4.0 | Top 1% | Honours College member | Student Union",
+    "courses": "主修课程：国际金融、市场营销、衍生品、固定收益、奇异期权、计量经济、线性代数、统计与数据分析、编程、银行学、会计学、管理学、宏/微观经济学等",
+    "courses_en": "Major course: International finance, Marketing, Derivatives, Fixed income securities, Exotic options and structured products, Econometrics, Linear algebra, Statistics and data analysis, Programming, Banking, Accounting, Business management, Macro/micro-economy, etc."
+  },
+  {
+    "id": "edu-3",
+    "institution": "加州大学伯克利分校 (UCB)",
+    "institution_en": "University of California, Berkeley",
+    "degree": "暑期交换",
+    "degree_en": "Summer school",
+    "period": "2021.07 - 2021.08",
+    "description": "全球化视野 | 自我驱动 | 高阶量化",
+    "description_en": "Global perspective | Adaptability | Quantitative",
+    "courses": "课程：高等微积分、深度学习、机器学习",
+    "courses_en": "Course: Advanced calculus, Deep learning, Machine learning"
+  }
+]
