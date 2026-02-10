@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- Google tag (gtag.js) -->
+ <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LQ3VD9KGS2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-LQ3VD9KGS2', { 'debug_mode': true });
+  gtag('config', 'G-LQ3VD9KGS2');
 </script>
-   
- <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>林宇欣个人网站| Lucy Lin's site</title>
     <script>
@@ -41,7 +40,7 @@
     <a href="#experience" class="nav-link"><span class="lang-zh">工作经历</span><span class="lang-en">Experience</span></a>
     <a href="#projects" class="nav-link"><span class="lang-zh">项目经历</span><span class="lang-en">Projects</span></a>
     <a href="#skills" class="nav-link"><span class="lang-zh">技能工具</span><span class="lang-en">Skills</span></a>
-    <a href="#contact" class="nav-link"><span class="lang-zh">联系方式</span><span class="lang-en">Contact</span></a>
+    <a href="#ai-works" class="nav-link"><span class="lang-zh">AI作品集</span><span class="lang-en">AI Works</span></a>
             
             <!-- 添加秘密花园按钮 -->
             <a href="https://example.com/secret-garden" target="_blank" 
@@ -80,8 +79,8 @@
     <a href="#skills" class="text-xl font-medium text-[#4A4E69]" onclick="closeMobileMenu()">
         <span class="lang-zh">技能工具</span><span class="lang-en">Skills</span>
     </a>
-    <a href="#contact" class="text-xl font-medium text-[#4A4E69]" onclick="closeMobileMenu()">
-        <span class="lang-zh">联系方式</span><span class="lang-en">Contact</span>
+    <a href="#ai-works" class="text-xl font-medium text-[#4A4E69]" onclick="closeMobileMenu()">
+        <span class="lang-zh">AI作品集</span><span class="lang-en">AI Works</span>
     </a>
             
             <!-- 移动端秘密花园按钮 -->
@@ -819,53 +818,145 @@
     </div>
 </section>
 
-      <!-- 联系部分 - 修改为较小高度 -->
-    <section id="contact" class="section-padding contact-section">
-        <div class="contact-container">
-            <h2 class="contact-title">
-                <span class="lang-zh">联系我</span><span class="lang-en">Contact Me</span>
+      <!-- AI 作品集部分 -->
+    <section id="ai-works" class="anchor-offset section-padding bg-[#faf8f5]">
+        <div class="max-w-6xl mx-auto px-6 md:px-16">
+            <h2 class="text-5xl font-bold text-[#1a2b4b] mb-4 text-center">
+                <span class="lang-zh">AI 作品集</span><span class="lang-en">AI Works</span>
             </h2>
-            <p class="contact-subtitle">
-                <span class="lang-zh">欢迎通过以下方式与我联系</span>
-                <span class="lang-en">Feel free to contact me through the following ways</span>
+            <p class="text-center text-gray-600 mb-12 text-lg">
+                <span class="lang-zh">探索人工智能驱动的创新项目</span>
+                <span class="lang-en">Explore innovative AI-powered projects</span>
             </p>
 
-            <div class="info-row">
-                <a href="mailto:yuxin4932@163.com" class="contact-item">
-                    <i data-lucide="mail" size="24"></i>
-                    <span>yuxin4932@163.com</span>
-                </a>
-                <a href="tel:+8613328581768" class="contact-item">
-                    <i data-lucide="phone" size="24"></i>
-                    <span>+86 13328581768</span>
-                </a>
+            <!-- AI作品网格容器 -->
+            <div class="ai-works-grid">
+                <!-- 作品1 -->
+                <div class="ai-work-card">
+                    <div class="ai-work-slider">
+                        <div class="ai-work-slide">
+                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop" alt="AI 智能助手" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="ai-work-content">
+                        <h3 class="ai-work-title">
+                            <span class="lang-zh">AI 智能助手</span>
+                            <span class="lang-en">AI Smart Assistant</span>
+                        </h3>
+                        <p class="ai-work-description">
+                            <span class="lang-zh">基于大语言模型的智能对话助手，支持多轮对话、上下文理解和个性化回复</span>
+                            <span class="lang-en">LLM-based intelligent chat assistant with multi-turn dialogue, context understanding and personalized responses</span>
+                        </p>
+                        <a href="/ai-works/smart-assistant" class="ai-work-link" onclick="if(typeof gtag!=='undefined'){gtag('event','ai_work_click',{'work_name':'AI智能助手','work_id':'work-1'});}if(window.posthog){posthog.capture('ai_work_detail_clicked',{work_id:'work-1',work_name:'AI智能助手'});}">
+                            <span class="lang-zh">查看详情</span>
+                            <span class="lang-en">View Details</span>
+                            <i data-lucide="arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 作品2 -->
+                <div class="ai-work-card">
+                    <div class="ai-work-slider">
+                        <div class="ai-work-slide">
+                            <img src="https://images.unsplash.com/photo-1686191128892-c0557e4e4a2b?w=800&h=600&fit=crop" alt="AI 图像生成器" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="ai-work-content">
+                        <h3 class="ai-work-title">
+                            <span class="lang-zh">AI 图像生成器</span>
+                            <span class="lang-en">AI Image Generator</span>
+                        </h3>
+                        <p class="ai-work-description">
+                            <span class="lang-zh">文本转图像的创意工具，支持多种艺术风格和高清输出</span>
+                            <span class="lang-en">Text-to-image creative tool supporting various art styles and HD output</span>
+                        </p>
+                        <a href="/ai-works/image-generator" class="ai-work-link" onclick="if(typeof gtag!=='undefined'){gtag('event','ai_work_click',{'work_name':'AI图像生成器','work_id':'work-2'});}if(window.posthog){posthog.capture('ai_work_detail_clicked',{work_id:'work-2',work_name:'AI图像生成器'});}">
+                            <span class="lang-zh">查看详情</span>
+                            <span class="lang-en">View Details</span>
+                            <i data-lucide="arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 作品3 -->
+                <div class="ai-work-card">
+                    <div class="ai-work-slider">
+                        <div class="ai-work-slide">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop" alt="数据分析平台" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="ai-work-content">
+                        <h3 class="ai-work-title">
+                            <span class="lang-zh">数据分析平台</span>
+                            <span class="lang-en">Data Analytics Platform</span>
+                        </h3>
+                        <p class="ai-work-description">
+                            <span class="lang-zh">AI驱动的数据分析和可视化平台，自动生成商业洞察报告</span>
+                            <span class="lang-en">AI-powered data analytics and visualization platform with automated business insights</span>
+                        </p>
+                        <a href="/ai-works/data-analytics" class="ai-work-link" onclick="if(typeof gtag!=='undefined'){gtag('event','ai_work_click',{'work_name':'数据分析平台','work_id':'work-3'});}if(window.posthog){posthog.capture('ai_work_detail_clicked',{work_id:'work-3',work_name:'数据分析平台'});}">
+                            <span class="lang-zh">查看详情</span>
+                            <span class="lang-en">View Details</span>
+                            <i data-lucide="arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 作品4 -->
+                <div class="ai-work-card">
+                    <div class="ai-work-slider">
+                        <div class="ai-work-slide">
+                            <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=600&fit=crop" alt="内容创作助手" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="ai-work-content">
+                        <h3 class="ai-work-title">
+                            <span class="lang-zh">内容创作助手</span>
+                            <span class="lang-en">Content Creation Assistant</span>
+                        </h3>
+                        <p class="ai-work-description">
+                            <span class="lang-zh">智能文案生成工具，支持多语言、多风格的营销文案创作</span>
+                            <span class="lang-en">Intelligent copywriting tool supporting multilingual, multi-style marketing content creation</span>
+                        </p>
+                        <a href="/ai-works/content-assistant" class="ai-work-link" onclick="if(typeof gtag!=='undefined'){gtag('event','ai_work_click',{'work_name':'内容创作助手','work_id':'work-4'});}if(window.posthog){posthog.capture('ai_work_detail_clicked',{work_id:'work-4',work_name:'内容创作助手'});}">
+                            <span class="lang-zh">查看详情</span>
+                            <span class="lang-en">View Details</span>
+                            <i data-lucide="arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
 
-            <div class="social-row">
-                <a href="https://www.linkedin.com/in/lucy-yuxin-lin/" target="_blank" class="social-icon" title="LinkedIn">
-                    <i data-lucide="linkedin" size="32"></i>
-                </a>
-                <a href="#" class="social-icon" title="GitHub">
-                    <i data-lucide="github" size="32"></i>
-                </a>
-                <a href="#" class="social-icon" title="查看简历">
-                    <i data-lucide="file-text" size="32"></i>
-                </a>
-            </div>
-            
-            <!-- 在这里添加秘密花园按钮 -->
-            <div class="mt-12 mb-8 flex justify-center">
-                <a href="https://example.com/secret-garden" target="_blank" class="bg-white text-[#86745b] px-8 py-4 rounded-full font-bold text-lg hover:bg-[#f5f5f5] transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-3 group">
-                    <i data-lucide="sparkles" class="w-6 h-6"></i>
-                    <span class="lang-zh">欢迎来到我的秘密花园</span>
-                    <span class="lang-en">Welcome to My Secret Garden</span>
-                    <i data-lucide="arrow-right" class="w-6 h-6 group-hover:translate-x-2 transition-transform"></i>
-                </a>
-            </div>
+            <!-- 简化的联系信息 -->
+            <div class="mt-20 pt-12 border-t border-gray-200 text-center">
+                <div class="flex flex-wrap justify-center gap-4 mb-6">
+                    <a href="mailto:yuxin4932@163.com" class="flex items-center gap-2 px-6 py-3 bg-white rounded-full shadow-md hover:shadow-lg transition-all">
+                        <i data-lucide="mail" class="w-5 h-5 text-[#86745b]"></i>
+                        <span class="text-[#4A4E69]">yuxin4932@163.com</span>
+                    </a>
+                    <a href="tel:+8613328581768" class="flex items-center gap-2 px-6 py-3 bg-white rounded-full shadow-md hover:shadow-lg transition-all">
+                        <i data-lucide="phone" class="w-5 h-5 text-[#86745b]"></i>
+                        <span class="text-[#4A4E69]">+86 13328581768</span>
+                    </a>
+                </div>
 
-            <div class="footer">
-                <span class="lang-zh">© 2026 林宇欣. 保留所有权利.</span>
-                <span class="lang-en">© 2026 Yuxin Lin. All rights reserved.</span>
+                <div class="flex justify-center gap-4 mb-6">
+                    <a href="https://www.linkedin.com/in/lucy-yuxin-lin/" target="_blank" class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:scale-110 transition-all" title="LinkedIn">
+                        <i data-lucide="linkedin" class="w-6 h-6 text-[#86745b]"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:scale-110 transition-all" title="GitHub">
+                        <i data-lucide="github" class="w-6 h-6 text-[#86745b]"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:scale-110 transition-all" title="Resume">
+                        <i data-lucide="file-text" class="w-6 h-6 text-[#86745b]"></i>
+                    </a>
+                </div>
+
+                <p class="text-gray-500 text-sm">
+                    <span class="lang-zh">© 2026 林宇欣. 保留所有权利.</span>
+                    <span class="lang-en">© 2026 Yuxin Lin. All rights reserved.</span>
+                </p>
             </div>
         </div>
     </section>
@@ -926,8 +1017,7 @@
                 </div>
             </div>
 
-            <script type="module" src="src/integrations/supabase/client.js"></script>
-            <script type="module" src="src/scripts/posthog.js"></script>
+            <!-- 加载脚本 -->
             <script src="src/scripts/main.js"></script>
             <script>
                 // 聊天机器人功能
@@ -1204,5 +1294,8 @@
                     }
                 }
             </style>
+            
+            <script type="module" src="src/integrations/supabase/client.js"></script>
+            <script type="module" src="src/scripts/posthog.js"></script>
         </body>
         </html>
