@@ -1,0 +1,70 @@
+[
+  {
+    "id": "work-1",
+    "name": {
+      "zh": "AI 智能助手",
+      "en": "AI Smart Assistant"
+    },
+    "description": {
+      "zh": "基于大语言模型的智能对话助手，支持多轮对话、上下文理解和个性化回复",
+      "en": "LLM-based intelligent chat assistant with multi-turn dialogue, context understanding and personalized responses"
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1676277791608-ac5c5be3e328?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1675271591433-69f5d8e4e238?w=800&h=600&fit=crop"
+    ],
+    "detailUrl": "/ai-works/smart-assistant"
+  },
+  {
+    "id": "work-2",
+    "name": {
+      "zh": "AI 图像生成器",
+      "en": "AI Image Generator"
+    },
+    "description": {
+      "zh": "文本转图像的创意工具，支持多种艺术风格和高清输出",
+      "en": "Text-to-image creative tool supporting various art styles and HD output"
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1686191128892-c0557e4e4a2b?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1696446702593-bc8bda8af1ad?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1696446701796-da61225697cc?w=800&h=600&fit=crop"
+    ],
+    "detailUrl": "/ai-works/image-generator"
+  },
+  {
+    "id": "work-3",
+    "name": {
+      "zh": "数据分析平台",
+      "en": "Data Analytics Platform"
+    },
+    "description": {
+      "zh": "AI驱动的数据分析和可视化平台，自动生成商业洞察报告",
+      "en": "AI-powered data analytics and visualization platform with automated business insights"
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=600&fit=crop"
+    ],
+    "detailUrl": "/ai-works/data-analytics"
+  },
+  {
+    "id": "work-4",
+    "name": {
+      "zh": "内容创作助手",
+      "en": "Content Creation Assistant"
+    },
+    "description": {
+      "zh": "智能文案生成工具，支持多语言、多风格的营销文案创作",
+      "en": "Intelligent copywriting tool supporting multilingual, multi-style marketing content creation"
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=600&fit=crop"
+    ],
+    "detailUrl": "/ai-works/content-assistant"
+  }
+]
