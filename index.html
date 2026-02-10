@@ -830,57 +830,103 @@
             </p>
 
             <!-- AI作品网格容器 -->
-            <div id="ai-works-container" class="ai-works-grid">
-                <!-- 临时硬编码作品以测试布局 -->
-                <!-- JavaScript将替换此内容 -->
-            </div>
-            
-            <script>
-            // 临时测试：直接渲染作品
-            (function() {
-                console.log('Inline AI works initialization');
-                const testWorks = [
-                  {"id":"work-1","name":{"zh":"AI 智能助手","en":"AI Smart Assistant"},"description":{"zh":"基于大语言模型的智能对话助手，支持多轮对话、上下文理解和个性化回复","en":"LLM-based intelligent chat assistant"},"images":["https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop"],"detailUrl":"/ai-works/smart-assistant"},
-                  {"id":"work-2","name":{"zh":"AI 图像生成器","en":"AI Image Generator"},"description":{"zh":"文本转图像的创意工具，支持多种艺术风格和高清输出","en":"Text-to-image creative tool supporting various art styles"},"images":["https://images.unsplash.com/photo-1686191128892-c0557e4e4a2b?w=800&h=600&fit=crop"],"detailUrl":"/ai-works/image-generator"},
-                  {"id":"work-3","name":{"zh":"数据分析平台","en":"Data Analytics Platform"},"description":{"zh":"AI驱动的数据分析和可视化平台，自动生成商业洞察报告","en":"AI-powered data analytics platform"},"images":["https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop"],"detailUrl":"/ai-works/data-analytics"},
-                  {"id":"work-4","name":{"zh":"内容创作助手","en":"Content Creation Assistant"},"description":{"zh":"智能文案生成工具，支持多语言、多风格的营销文案创作","en":"Intelligent copywriting tool"},"images":["https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=600&fit=crop"],"detailUrl":"/ai-works/content-assistant"}
-                ];
-                
-                const container = document.getElementById('ai-works-container');
-                if (container && testWorks) {
-                    container.innerHTML = testWorks.map(work => `
-                        <div class="ai-work-card">
-                            <div class="ai-work-slider">
-                                <div class="ai-work-slide">
-                                    <img src="${work.images[0]}" alt="${work.name.zh}">
-                                </div>
-                            </div>
-                            <div class="ai-work-content">
-                                <h3 class="ai-work-title">
-                                    <span class="lang-zh">${work.name.zh}</span>
-                                    <span class="lang-en">${work.name.en}</span>
-                                </h3>
-                                <p class="ai-work-description">
-                                    <span class="lang-zh">${work.description.zh}</span>
-                                    <span class="lang-en">${work.description.en}</span>
-                                </p>
-                                <a href="${work.detailUrl}" class="ai-work-link" onclick="if(typeof gtag!=='undefined'){gtag('event','ai_work_click',{'work_name':'${work.name.zh}'});}">
-                                    <span class="lang-zh">查看详情</span>
-                                    <span class="lang-en">View Details</span>
-                                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                                </a>
-                            </div>
+            <div class="ai-works-grid">
+                <!-- 作品1 -->
+                <div class="ai-work-card">
+                    <div class="ai-work-slider">
+                        <div class="ai-work-slide">
+                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop" alt="AI 智能助手" loading="lazy">
                         </div>
-                    `).join('');
-                    console.log('Test works rendered');
-                    
-                    // 初始化Lucide图标
-                    if (window.lucide) {
-                        lucide.createIcons();
-                    }
-                }
-            })();
-            </script>
+                    </div>
+                    <div class="ai-work-content">
+                        <h3 class="ai-work-title">
+                            <span class="lang-zh">AI 智能助手</span>
+                            <span class="lang-en">AI Smart Assistant</span>
+                        </h3>
+                        <p class="ai-work-description">
+                            <span class="lang-zh">基于大语言模型的智能对话助手，支持多轮对话、上下文理解和个性化回复</span>
+                            <span class="lang-en">LLM-based intelligent chat assistant with multi-turn dialogue, context understanding and personalized responses</span>
+                        </p>
+                        <a href="/ai-works/smart-assistant" class="ai-work-link" onclick="if(typeof gtag!=='undefined'){gtag('event','ai_work_click',{'work_name':'AI智能助手','work_id':'work-1'});}if(window.posthog){posthog.capture('ai_work_detail_clicked',{work_id:'work-1',work_name:'AI智能助手'});}">
+                            <span class="lang-zh">查看详情</span>
+                            <span class="lang-en">View Details</span>
+                            <i data-lucide="arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 作品2 -->
+                <div class="ai-work-card">
+                    <div class="ai-work-slider">
+                        <div class="ai-work-slide">
+                            <img src="https://images.unsplash.com/photo-1686191128892-c0557e4e4a2b?w=800&h=600&fit=crop" alt="AI 图像生成器" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="ai-work-content">
+                        <h3 class="ai-work-title">
+                            <span class="lang-zh">AI 图像生成器</span>
+                            <span class="lang-en">AI Image Generator</span>
+                        </h3>
+                        <p class="ai-work-description">
+                            <span class="lang-zh">文本转图像的创意工具，支持多种艺术风格和高清输出</span>
+                            <span class="lang-en">Text-to-image creative tool supporting various art styles and HD output</span>
+                        </p>
+                        <a href="/ai-works/image-generator" class="ai-work-link" onclick="if(typeof gtag!=='undefined'){gtag('event','ai_work_click',{'work_name':'AI图像生成器','work_id':'work-2'});}if(window.posthog){posthog.capture('ai_work_detail_clicked',{work_id:'work-2',work_name:'AI图像生成器'});}">
+                            <span class="lang-zh">查看详情</span>
+                            <span class="lang-en">View Details</span>
+                            <i data-lucide="arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 作品3 -->
+                <div class="ai-work-card">
+                    <div class="ai-work-slider">
+                        <div class="ai-work-slide">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop" alt="数据分析平台" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="ai-work-content">
+                        <h3 class="ai-work-title">
+                            <span class="lang-zh">数据分析平台</span>
+                            <span class="lang-en">Data Analytics Platform</span>
+                        </h3>
+                        <p class="ai-work-description">
+                            <span class="lang-zh">AI驱动的数据分析和可视化平台，自动生成商业洞察报告</span>
+                            <span class="lang-en">AI-powered data analytics and visualization platform with automated business insights</span>
+                        </p>
+                        <a href="/ai-works/data-analytics" class="ai-work-link" onclick="if(typeof gtag!=='undefined'){gtag('event','ai_work_click',{'work_name':'数据分析平台','work_id':'work-3'});}if(window.posthog){posthog.capture('ai_work_detail_clicked',{work_id:'work-3',work_name:'数据分析平台'});}">
+                            <span class="lang-zh">查看详情</span>
+                            <span class="lang-en">View Details</span>
+                            <i data-lucide="arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 作品4 -->
+                <div class="ai-work-card">
+                    <div class="ai-work-slider">
+                        <div class="ai-work-slide">
+                            <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=600&fit=crop" alt="内容创作助手" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="ai-work-content">
+                        <h3 class="ai-work-title">
+                            <span class="lang-zh">内容创作助手</span>
+                            <span class="lang-en">Content Creation Assistant</span>
+                        </h3>
+                        <p class="ai-work-description">
+                            <span class="lang-zh">智能文案生成工具，支持多语言、多风格的营销文案创作</span>
+                            <span class="lang-en">Intelligent copywriting tool supporting multilingual, multi-style marketing content creation</span>
+                        </p>
+                        <a href="/ai-works/content-assistant" class="ai-work-link" onclick="if(typeof gtag!=='undefined'){gtag('event','ai_work_click',{'work_name':'内容创作助手','work_id':'work-4'});}if(window.posthog){posthog.capture('ai_work_detail_clicked',{work_id:'work-4',work_name:'内容创作助手'});}">
+                            <span class="lang-zh">查看详情</span>
+                            <span class="lang-en">View Details</span>
+                            <i data-lucide="arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
             <!-- 简化的联系信息 -->
             <div class="mt-20 pt-12 border-t border-gray-200 text-center">
@@ -973,7 +1019,6 @@
 
             <!-- 加载脚本 -->
             <script src="src/scripts/main.js"></script>
-            <script src="src/scripts/ai-works.js" defer></script>
             <script>
                 // 聊天机器人功能
                 document.addEventListener('DOMContentLoaded', function() {
