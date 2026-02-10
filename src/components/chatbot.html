@@ -1,0 +1,272 @@
+<!-- 聊天机器人组件 -->
+<div id="chatbot-container" class="fixed bottom-6 right-6 z-50">
+    <!-- 聊天机器人按钮 -->
+    <div id="chatbot-button" class="w-16 h-16 bg-[#8E9775] rounded-full shadow-lg flex items-center justify-center cursor-pointer hover:bg-[#7a8463] transition-colors">
+        <i data-lucide="message-square" class="w-8 h-8 text-white"></i>
+    </div>
+    
+    <!-- 聊天机器人窗口 -->
+    <div id="chatbot-window" class="hidden w-80 md:w-96 bg-white rounded-xl shadow-2xl overflow-hidden">
+        <!-- 聊天机器人头部 -->
+        <div class="chatbot-header bg-[#8E9775] text-white p-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <i data-lucide="message-square" class="w-5 h-5"></i>
+                <h3 class="font-bold">
+                    <span class="lang-zh">智能助手</span>
+                    <span class="lang-en">AI Assistant</span>
+                </h3>
+            </div>
+            <button id="close-chatbot" class="text-white hover:opacity-80">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+        
+        <!-- 聊天机器人消息区域 -->
+        <div id="chatbot-messages" class="p-4 h-80 overflow-y-auto space-y-4">
+            <!-- 欢迎消息 -->
+            <div class="flex gap-2">
+                <div class="w-8 h-8 bg-[#8E9775] rounded-full flex items-center justify-center flex-shrink-0">
+                    <i data-lucide="bot" class="w-4 h-4 text-white"></i>
+                </div>
+                <div class="bg-gray-100 rounded-lg p-3 max-w-[80%]">
+                    <p class="text-sm">
+                        <span class="lang-zh">你好！我是林宇欣的智能助手，有什么可以帮助你的吗？</span>
+                        <span class="lang-en">Hello! I'm Lucy's AI assistant. How can I help you today?</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 聊天机器人输入区域 -->
+        <div class="chatbot-input-container p-4 border-t">
+            <div class="flex gap-2">
+                <input type="text" id="chatbot-input" class="flex-1 border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#8E9775] focus:border-transparent" placeholder="输入消息...">
+                <button id="send-message" class="bg-[#8E9775] text-white rounded-full p-2 hover:bg-[#7a8463] transition-colors">
+                    <i data-lucide="send" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 聊天机器人功能
+    document.addEventListener('DOMContentLoaded', function() {
+        const chatbotButton = document.getElementById('chatbot-button');
+        const chatbotWindow = document.getElementById('chatbot-window');
+        const closeChatbot = document.getElementById('close-chatbot');
+        const chatbotInput = document.getElementById('chatbot-input');
+        const sendMessage = document.getElementById('send-message');
+        const chatbotMessages = document.getElementById('chatbot-messages');
+        
+        // 打开/关闭聊天机器人
+        chatbotButton.addEventListener('click', function() {
+            chatbotWindow.classList.toggle('hidden');
+        });
+        
+        closeChatbot.addEventListener('click', function() {
+            chatbotWindow.classList.add('hidden');
+        });
+        
+        // 发送消息
+        function sendUserMessage() {
+            const message = chatbotInput.value.trim();
+            if (message) {
+                // 添加用户消息
+                addMessage('user', message);
+                chatbotInput.value = '';
+                
+                // 显示加载状态
+                addMessage('bot', '<span class="lang-zh">思考中...</span><span class="lang-en">Thinking...</span>', true);
+                
+                // 获取API密钥和ID（使用模拟数据进行测试）
+                getMockApiKeys().then(keys => {
+                    if (keys) {
+                        // 调用Coze API
+                        callCozeApi(keys.coze_api_key, keys.coze_agent_id, message).then(response => {
+                            // 移除加载状态
+                            removeLoadingMessage();
+                            // 添加机器人回复
+                            addMessage('bot', response);
+                        }).catch(error => {
+                            console.error('Error calling Coze API:', error);
+                            removeLoadingMessage();
+                            addMessage('bot', '<span class="lang-zh">抱歉，我遇到了一些问题，请稍后再试。</span><span class="lang-en">Sorry, I encountered some issues. Please try again later.</span>');
+                        });
+                    } else {
+                        removeLoadingMessage();
+                        addMessage('bot', '<span class="lang-zh">抱歉，我暂时无法提供服务，请稍后再试。</span><span class="lang-en">Sorry, I cannot provide service at the moment. Please try again later.</span>');
+                    }
+                }).catch(error => {
+                    console.error('Error getting API keys:', error);
+                    removeLoadingMessage();
+                    addMessage('bot', '<span class="lang-zh">抱歉，我暂时无法提供服务，请稍后再试。</span><span class="lang-en">Sorry, I cannot provide service at the moment. Please try again later.</span>');
+                });
+            }
+        }
+        
+        sendMessage.addEventListener('click', sendUserMessage);
+        
+        chatbotInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendUserMessage();
+            }
+        });
+        
+        // 添加消息到聊天窗口
+        function addMessage(type, content, isLoading = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'flex gap-2' + (type === 'user' ? ' justify-end' : '');
+            
+            if (type === 'user') {
+                messageDiv.innerHTML = `
+                    <div class="bg-[#8E9775] text-white rounded-lg p-3 max-w-[80%]">
+                        <p class="text-sm">${content}</p>
+                    </div>
+                    <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="user" class="w-4 h-4 text-gray-600"></i>
+                    </div>
+                `;
+            } else {
+                messageDiv.innerHTML = `
+                    <div class="w-8 h-8 bg-[#8E9775] rounded-full flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="bot" class="w-4 h-4 text-white"></i>
+                    </div>
+                    <div class="bg-gray-100 rounded-lg p-3 max-w-[80%] ${isLoading ? 'loading-message' : ''}">
+                        <p class="text-sm">${content}</p>
+                    </div>
+                `;
+            }
+            
+            chatbotMessages.appendChild(messageDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            
+            // 初始化Lucide图标
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+        
+        // 移除加载消息
+        function removeLoadingMessage() {
+            const loadingMessage = document.querySelector('.loading-message').closest('.flex');
+            if (loadingMessage) {
+                loadingMessage.remove();
+            }
+        }
+        
+        // 从Supabase获取API密钥和ID
+        async function getApiKeys() {
+            try {
+                // 这里需要替换为实际的Supabase配置
+                const supabaseUrl = 'YOUR_SUPABASE_URL';
+                const supabaseKey = 'YOUR_SUPABASE_ANON_KEY';
+                
+                // 初始化Supabase客户端
+                const { createClient } = await import('https://esm.sh/@supabase/supabase-js@2');
+                const supabase = createClient(supabaseUrl, supabaseKey);
+                
+                // 查询API密钥和ID
+                const { data, error } = await supabase
+                    .from('api_keys')
+                    .select('coze_api_key, coze_agent_id')
+                    .single();
+                
+                if (error) {
+                    console.error('Error fetching API keys:', error);
+                    return null;
+                }
+                
+                return data;
+            } catch (error) {
+                console.error('Error connecting to Supabase:', error);
+                return null;
+            }
+        }
+        
+        // 为了测试，添加模拟数据
+        async function getMockApiKeys() {
+            // 这里提供模拟数据，实际部署时应删除
+            return {
+                coze_api_key: 'mock_coze_api_key',
+                coze_agent_id: 'mock_coze_agent_id'
+            };
+        }
+        
+        // 调用Coze API
+        async function callCozeApi(apiKey, agentId, message) {
+            try {
+                // 实际部署时使用真实API调用
+                // const response = await fetch('https://api.coze.cn/v1/chat/completions', {
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-Type': 'application/json',
+                //         'Authorization': `Bearer ${apiKey}`
+                //     },
+                //     body: JSON.stringify({
+                //         model: agentId,
+                //         messages: [{
+                //             role: 'user',
+                //             content: message
+                //         }],
+                //         temperature: 0.7
+                //     })
+                // });
+                
+                // if (!response.ok) {
+                //     throw new Error(`API error: ${response.status}`);
+                // }
+                // 
+                // const data = await response.json();
+                // return data.choices[0].message.content;
+                
+                // 为了测试，返回模拟响应
+                return `<span class="lang-zh">感谢您的消息："${message}"。这是一个模拟回复，实际部署时将使用Coze API获取真实回复。</span><span class="lang-en">Thank you for your message: "${message}". This is a mock response. In production, we will use Coze API to get real responses.</span>`;
+            } catch (error) {
+                console.error('Error calling Coze API:', error);
+                throw error;
+            }
+        }
+    });
+</script>
+
+<style>
+    /* 聊天机器人样式 */
+    #chatbot-container {
+        font-family: 'Noto Sans SC', sans-serif;
+    }
+    
+    #chatbot-messages {
+        scroll-behavior: smooth;
+    }
+    
+    #chatbot-messages::-webkit-scrollbar {
+        width: 4px;
+    }
+    
+    #chatbot-messages::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 2px;
+    }
+    
+    #chatbot-messages::-webkit-scrollbar-thumb {
+        background: #8E9775;
+        border-radius: 2px;
+    }
+    
+    #chatbot-messages::-webkit-scrollbar-thumb:hover {
+        background: #7a8463;
+    }
+    
+    .loading-message {
+        opacity: 0.7;
+    }
+    
+    /* 响应式调整 */
+    @media (max-width: 768px) {
+        #chatbot-window {
+            width: 90vw;
+            max-width: 400px;
+        }
+    }
+</style>
