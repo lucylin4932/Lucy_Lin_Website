@@ -93,6 +93,28 @@
   - `direction`: 方向（next/previous）
   - `project_index`: 项目索引
 
+### 12. AI作品详情点击 (`ai_work_detail_clicked`)
+- 点击AI作品的"查看详情"按钮
+- 属性：
+  - `work_id`: 作品ID
+  - `work_name`: 作品名称
+  - `language`: 当前语言
+
+### 13. AI作品图片轮播 (`ai_work_slider_navigated`)
+- 浏览AI作品的图片轮播
+- 属性：
+  - `work_id`: 作品ID
+  - `work_name`: 作品名称
+  - `direction`: 方向（next/previous）
+  - `slide_index`: 当前图片索引
+
+### 14. AI作品轮播点切换 (`ai_work_slider_dot_clicked`)
+- 点击AI作品图片轮播的指示点
+- 属性：
+  - `work_id`: 作品ID
+  - `work_name`: 作品名称
+  - `slide_index`: 目标图片索引
+
 ## 手动追踪事件
 
 ### 基本用法
@@ -135,6 +157,29 @@ document.querySelector('#video-player').addEventListener('play', () => {
     video_title: 'Introduction Video',
     video_duration: 120
   });
+});
+```
+
+### 示例：追踪AI作品交互
+```javascript
+// 手动追踪AI作品查看
+window.posthog.capture('ai_work_viewed', {
+  work_id: 'work-1',
+  work_name: 'AI Smart Assistant',
+  view_duration: 30
+});
+```
+
+## GA4 集成
+
+AI作品集模块同时支持Google Analytics 4 (GA4) 埋点：
+
+### AI作品点击事件
+```javascript
+// 自动触发
+gtag('event', 'ai_work_click', {
+  'work_name': '作品名称',
+  'work_id': '作品ID'
 });
 ```
 

@@ -40,7 +40,7 @@
     <a href="#experience" class="nav-link"><span class="lang-zh">工作经历</span><span class="lang-en">Experience</span></a>
     <a href="#projects" class="nav-link"><span class="lang-zh">项目经历</span><span class="lang-en">Projects</span></a>
     <a href="#skills" class="nav-link"><span class="lang-zh">技能工具</span><span class="lang-en">Skills</span></a>
-    <a href="#contact" class="nav-link"><span class="lang-zh">联系方式</span><span class="lang-en">Contact</span></a>
+    <a href="#ai-works" class="nav-link"><span class="lang-zh">AI作品集</span><span class="lang-en">AI Works</span></a>
             
             <!-- 添加秘密花园按钮 -->
             <a href="https://example.com/secret-garden" target="_blank" 
@@ -79,8 +79,8 @@
     <a href="#skills" class="text-xl font-medium text-[#4A4E69]" onclick="closeMobileMenu()">
         <span class="lang-zh">技能工具</span><span class="lang-en">Skills</span>
     </a>
-    <a href="#contact" class="text-xl font-medium text-[#4A4E69]" onclick="closeMobileMenu()">
-        <span class="lang-zh">联系方式</span><span class="lang-en">Contact</span>
+    <a href="#ai-works" class="text-xl font-medium text-[#4A4E69]" onclick="closeMobileMenu()">
+        <span class="lang-zh">AI作品集</span><span class="lang-en">AI Works</span>
     </a>
             
             <!-- 移动端秘密花园按钮 -->
@@ -818,53 +818,70 @@
     </div>
 </section>
 
-      <!-- 联系部分 - 修改为较小高度 -->
-    <section id="contact" class="section-padding contact-section">
-        <div class="contact-container">
-            <h2 class="contact-title">
-                <span class="lang-zh">联系我</span><span class="lang-en">Contact Me</span>
+      <!-- AI 作品集部分 -->
+    <section id="ai-works" class="anchor-offset section-padding bg-[#faf8f5]">
+        <div class="max-w-6xl mx-auto px-6 md:px-16">
+            <h2 class="text-5xl font-bold text-[#1a2b4b] mb-4 text-center">
+                <span class="lang-zh">AI 作品集</span><span class="lang-en">AI Works</span>
             </h2>
-            <p class="contact-subtitle">
-                <span class="lang-zh">欢迎通过以下方式与我联系</span>
-                <span class="lang-en">Feel free to contact me through the following ways</span>
+            <p class="text-center text-gray-600 mb-12 text-lg">
+                <span class="lang-zh">探索人工智能驱动的创新项目</span>
+                <span class="lang-en">Explore innovative AI-powered projects</span>
             </p>
 
-            <div class="info-row">
-                <a href="mailto:yuxin4932@163.com" class="contact-item">
-                    <i data-lucide="mail" size="24"></i>
-                    <span>yuxin4932@163.com</span>
-                </a>
-                <a href="tel:+8613328581768" class="contact-item">
-                    <i data-lucide="phone" size="24"></i>
-                    <span>+86 13328581768</span>
-                </a>
+            <div id="ai-works-container" class="ai-works-grid">
+                <!-- AI作品将由JavaScript动态加载 -->
             </div>
 
-            <div class="social-row">
-                <a href="https://www.linkedin.com/in/lucy-yuxin-lin/" target="_blank" class="social-icon" title="LinkedIn">
-                    <i data-lucide="linkedin" size="32"></i>
-                </a>
-                <a href="#" class="social-icon" title="GitHub">
-                    <i data-lucide="github" size="32"></i>
-                </a>
-                <a href="#" class="social-icon" title="查看简历">
-                    <i data-lucide="file-text" size="32"></i>
-                </a>
-            </div>
-            
-            <!-- 在这里添加秘密花园按钮 -->
-            <div class="mt-12 mb-8 flex justify-center">
-                <a href="https://example.com/secret-garden" target="_blank" class="bg-white text-[#86745b] px-8 py-4 rounded-full font-bold text-lg hover:bg-[#f5f5f5] transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-3 group">
-                    <i data-lucide="sparkles" class="w-6 h-6"></i>
-                    <span class="lang-zh">欢迎来到我的秘密花园</span>
-                    <span class="lang-en">Welcome to My Secret Garden</span>
-                    <i data-lucide="arrow-right" class="w-6 h-6 group-hover:translate-x-2 transition-transform"></i>
-                </a>
-            </div>
+            <!-- 联系信息和页脚 -->
+            <div class="mt-20 pt-12 border-t border-gray-200">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-[#1a2b4b] mb-4">
+                        <span class="lang-zh">联系我</span><span class="lang-en">Contact Me</span>
+                    </h3>
+                    <p class="text-gray-600 mb-6">
+                        <span class="lang-zh">欢迎通过以下方式与我联系</span>
+                        <span class="lang-en">Feel free to contact me</span>
+                    </p>
+                </div>
 
-            <div class="footer">
-                <span class="lang-zh">© 2026 林宇欣. 保留所有权利.</span>
-                <span class="lang-en">© 2026 Yuxin Lin. All rights reserved.</span>
+                <div class="flex flex-wrap justify-center gap-6 mb-8">
+                    <a href="mailto:yuxin4932@163.com" class="flex items-center gap-2 px-6 py-3 bg-white rounded-full shadow-md hover:shadow-lg transition-all">
+                        <i data-lucide="mail" class="w-5 h-5 text-[#86745b]"></i>
+                        <span class="text-[#4A4E69]">yuxin4932@163.com</span>
+                    </a>
+                    <a href="tel:+8613328581768" class="flex items-center gap-2 px-6 py-3 bg-white rounded-full shadow-md hover:shadow-lg transition-all">
+                        <i data-lucide="phone" class="w-5 h-5 text-[#86745b]"></i>
+                        <span class="text-[#4A4E69]">+86 13328581768</span>
+                    </a>
+                </div>
+
+                <div class="flex justify-center gap-4 mb-8">
+                    <a href="https://www.linkedin.com/in/lucy-yuxin-lin/" target="_blank" class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:scale-110 transition-all" title="LinkedIn">
+                        <i data-lucide="linkedin" class="w-6 h-6 text-[#86745b]"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:scale-110 transition-all" title="GitHub">
+                        <i data-lucide="github" class="w-6 h-6 text-[#86745b]"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:scale-110 transition-all" title="Resume">
+                        <i data-lucide="file-text" class="w-6 h-6 text-[#86745b]"></i>
+                    </a>
+                </div>
+
+                <!-- 秘密花园按钮 -->
+                <div class="flex justify-center mb-8">
+                    <a href="https://example.com/secret-garden" target="_blank" class="bg-gradient-to-r from-[#D4A373] to-[#8E9775] text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl transition-all duration-300 flex items-center gap-3 group">
+                        <i data-lucide="sparkles" class="w-6 h-6"></i>
+                        <span class="lang-zh">欢迎来到我的秘密花园</span>
+                        <span class="lang-en">Welcome to My Secret Garden</span>
+                        <i data-lucide="arrow-right" class="w-6 h-6 group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+
+                <div class="text-center text-gray-500 text-sm">
+                    <span class="lang-zh">© 2026 林宇欣. 保留所有权利.</span>
+                    <span class="lang-en">© 2026 Yuxin Lin. All rights reserved.</span>
+                </div>
             </div>
         </div>
     </section>
@@ -927,6 +944,7 @@
 
             <script type="module" src="src/integrations/supabase/client.js"></script>
             <script type="module" src="src/scripts/posthog.js"></script>
+            <script src="src/scripts/ai-works.js"></script>
             <script src="src/scripts/main.js"></script>
             <script>
                 // 聊天机器人功能
