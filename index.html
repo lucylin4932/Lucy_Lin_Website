@@ -829,23 +829,62 @@
                 <span class="lang-en">Explore innovative AI-powered projects</span>
             </p>
 
+            <!-- AI作品网格容器 -->
             <div id="ai-works-container" class="ai-works-grid">
-                <!-- AI作品将由JavaScript动态加载 -->
+                <!-- 临时硬编码作品以测试布局 -->
+                <!-- JavaScript将替换此内容 -->
             </div>
+            
+            <script>
+            // 临时测试：直接渲染作品
+            (function() {
+                console.log('Inline AI works initialization');
+                const testWorks = [
+                  {"id":"work-1","name":{"zh":"AI 智能助手","en":"AI Smart Assistant"},"description":{"zh":"基于大语言模型的智能对话助手，支持多轮对话、上下文理解和个性化回复","en":"LLM-based intelligent chat assistant"},"images":["https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop"],"detailUrl":"/ai-works/smart-assistant"},
+                  {"id":"work-2","name":{"zh":"AI 图像生成器","en":"AI Image Generator"},"description":{"zh":"文本转图像的创意工具，支持多种艺术风格和高清输出","en":"Text-to-image creative tool supporting various art styles"},"images":["https://images.unsplash.com/photo-1686191128892-c0557e4e4a2b?w=800&h=600&fit=crop"],"detailUrl":"/ai-works/image-generator"},
+                  {"id":"work-3","name":{"zh":"数据分析平台","en":"Data Analytics Platform"},"description":{"zh":"AI驱动的数据分析和可视化平台，自动生成商业洞察报告","en":"AI-powered data analytics platform"},"images":["https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop"],"detailUrl":"/ai-works/data-analytics"},
+                  {"id":"work-4","name":{"zh":"内容创作助手","en":"Content Creation Assistant"},"description":{"zh":"智能文案生成工具，支持多语言、多风格的营销文案创作","en":"Intelligent copywriting tool"},"images":["https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=600&fit=crop"],"detailUrl":"/ai-works/content-assistant"}
+                ];
+                
+                const container = document.getElementById('ai-works-container');
+                if (container && testWorks) {
+                    container.innerHTML = testWorks.map(work => `
+                        <div class="ai-work-card">
+                            <div class="ai-work-slider">
+                                <div class="ai-work-slide">
+                                    <img src="${work.images[0]}" alt="${work.name.zh}">
+                                </div>
+                            </div>
+                            <div class="ai-work-content">
+                                <h3 class="ai-work-title">
+                                    <span class="lang-zh">${work.name.zh}</span>
+                                    <span class="lang-en">${work.name.en}</span>
+                                </h3>
+                                <p class="ai-work-description">
+                                    <span class="lang-zh">${work.description.zh}</span>
+                                    <span class="lang-en">${work.description.en}</span>
+                                </p>
+                                <a href="${work.detailUrl}" class="ai-work-link" onclick="if(typeof gtag!=='undefined'){gtag('event','ai_work_click',{'work_name':'${work.name.zh}'});}">
+                                    <span class="lang-zh">查看详情</span>
+                                    <span class="lang-en">View Details</span>
+                                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    `).join('');
+                    console.log('Test works rendered');
+                    
+                    // 初始化Lucide图标
+                    if (window.lucide) {
+                        lucide.createIcons();
+                    }
+                }
+            })();
+            </script>
 
-            <!-- 联系信息和页脚 -->
-            <div class="mt-20 pt-12 border-t border-gray-200">
-                <div class="text-center mb-8">
-                    <h3 class="text-2xl font-bold text-[#1a2b4b] mb-4">
-                        <span class="lang-zh">联系我</span><span class="lang-en">Contact Me</span>
-                    </h3>
-                    <p class="text-gray-600 mb-6">
-                        <span class="lang-zh">欢迎通过以下方式与我联系</span>
-                        <span class="lang-en">Feel free to contact me</span>
-                    </p>
-                </div>
-
-                <div class="flex flex-wrap justify-center gap-6 mb-8">
+            <!-- 简化的联系信息 -->
+            <div class="mt-20 pt-12 border-t border-gray-200 text-center">
+                <div class="flex flex-wrap justify-center gap-4 mb-6">
                     <a href="mailto:yuxin4932@163.com" class="flex items-center gap-2 px-6 py-3 bg-white rounded-full shadow-md hover:shadow-lg transition-all">
                         <i data-lucide="mail" class="w-5 h-5 text-[#86745b]"></i>
                         <span class="text-[#4A4E69]">yuxin4932@163.com</span>
@@ -856,7 +895,7 @@
                     </a>
                 </div>
 
-                <div class="flex justify-center gap-4 mb-8">
+                <div class="flex justify-center gap-4 mb-6">
                     <a href="https://www.linkedin.com/in/lucy-yuxin-lin/" target="_blank" class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:scale-110 transition-all" title="LinkedIn">
                         <i data-lucide="linkedin" class="w-6 h-6 text-[#86745b]"></i>
                     </a>
@@ -868,20 +907,10 @@
                     </a>
                 </div>
 
-                <!-- 秘密花园按钮 -->
-                <div class="flex justify-center mb-8">
-                    <a href="https://example.com/secret-garden" target="_blank" class="bg-gradient-to-r from-[#D4A373] to-[#8E9775] text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl transition-all duration-300 flex items-center gap-3 group">
-                        <i data-lucide="sparkles" class="w-6 h-6"></i>
-                        <span class="lang-zh">欢迎来到我的秘密花园</span>
-                        <span class="lang-en">Welcome to My Secret Garden</span>
-                        <i data-lucide="arrow-right" class="w-6 h-6 group-hover:translate-x-2 transition-transform"></i>
-                    </a>
-                </div>
-
-                <div class="text-center text-gray-500 text-sm">
+                <p class="text-gray-500 text-sm">
                     <span class="lang-zh">© 2026 林宇欣. 保留所有权利.</span>
                     <span class="lang-en">© 2026 Yuxin Lin. All rights reserved.</span>
-                </div>
+                </p>
             </div>
         </div>
     </section>
@@ -942,10 +971,9 @@
                 </div>
             </div>
 
-            <script type="module" src="src/integrations/supabase/client.js"></script>
-            <script type="module" src="src/scripts/posthog.js"></script>
-            <script src="src/scripts/ai-works.js"></script>
+            <!-- 加载脚本 -->
             <script src="src/scripts/main.js"></script>
+            <script src="src/scripts/ai-works.js" defer></script>
             <script>
                 // 聊天机器人功能
                 document.addEventListener('DOMContentLoaded', function() {
@@ -1221,5 +1249,8 @@
                     }
                 }
             </style>
+            
+            <script type="module" src="src/integrations/supabase/client.js"></script>
+            <script type="module" src="src/scripts/posthog.js"></script>
         </body>
         </html>

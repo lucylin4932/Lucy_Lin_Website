@@ -1,33 +1,59 @@
 // AI Works Gallery Management
+console.log('AI Works script loaded');
 
 class AIWorksGallery {
   constructor() {
     this.works = [];
     this.sliderIntervals = {};
     this.currentLang = document.body.classList.contains('en-mode') ? 'en' : 'zh';
+    console.log('AIWorksGallery initialized');
   }
 
   async loadWorks() {
+    console.log('Loading AI works...');
     try {
       const response = await fetch('src/data/ai-works.json');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       this.works = await response.json();
+      console.log('AI works loaded:', this.works);
       this.render();
       this.initSliders();
     } catch (error) {
       console.error('Failed to load AI works:', error);
+      this.renderError();
     }
+  }
+
+  renderError() {
+    const container = document.getElementById('ai-works-container');
+    if (!container) return;
+    
+    container.innerHTML = `
+      <div class="col-span-2 text-center text-red-500 py-12">
+        <span class="lang-zh">加载作品失败，请刷新页面重试</span>
+        <span class="lang-en">Failed to load works. Please refresh the page.</span>
+      </div>
+    `;
   }
 
   render() {
     const container = document.getElementById('ai-works-container');
-    if (!container) return;
+    if (!container) {
+      console.error('Container #ai-works-container not found');
+      return;
+    }
 
-    container.innerHTML = this.works.map(work => this.createWorkCard(work)).join('');
+    console.log('Rendering AI works...');
+    const html = this.works.map(work => this.createWorkCard(work)).join('');
+    container.innerHTML = html;
     
     // 重新初始化Lucide图标
     if (window.lucide) {
       lucide.createIcons();
     }
+    console.log('AI works rendered successfully');
   }
 
   createWorkCard(work) {
@@ -40,7 +66,7 @@ class AIWorksGallery {
           <div class="ai-work-slides" data-slider="${work.id}">
             ${work.images.map(img => `
               <div class="ai-work-slide">
-                <img src="${img}" alt="${name}" loading="lazy" crossorigin="anonymous">
+                <img src="${img}" alt="${name}" loading="lazy">
               </div>
             `).join('')}
           </div>
@@ -215,10 +241,17 @@ class AIWorksGallery {
 // 创建全局实例
 window.aiWorksGallery = new AIWorksGallery();
 
-// 页面加载时初始化
-document.addEventListener('DOMContentLoaded', () => {
+// 立即尝试加载，如果DOM还没准备好则等待
+if (document.readyState === 'loading') {
+  console.log('Waiting for DOM to be ready...');
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM ready, loading works...');
+    window.aiWorksGallery.loadWorks();
+  });
+} else {
+  console.log('DOM already ready, loading works immediately...');
   window.aiWorksGallery.loadWorks();
-});
+}
 
 // 监听语言切换
 window.addEventListener('languageChanged', () => {
