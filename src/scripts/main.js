@@ -6,7 +6,13 @@ function toggleLanguage() {
     document.body.classList.toggle('en-mode');
     // 保存语言偏好到localStorage
     const isEn = document.body.classList.contains('en-mode');
-    localStorage.setItem('language', isEn ? 'en' : 'zh');
+    const newLang = isEn ? 'en' : 'zh';
+    localStorage.setItem('language', newLang);
+    
+    // 触发语言切换事件供PostHog追踪
+    window.dispatchEvent(new CustomEvent('languageChanged', { 
+        detail: { language: newLang } 
+    }));
 }
 
 // 页面加载时检查语言偏好
@@ -29,14 +35,34 @@ function closeMobileMenu() {
 
 // 教育/工作经历展开功能
 function toggleExp(id) {
-    document.getElementById(id).classList.toggle('expanded');
+    const element = document.getElementById(id);
+    const wasExpanded = element.classList.contains('expanded');
+    element.classList.toggle('expanded');
+    
+    // 追踪展开/折叠事件
+    if (window.posthog) {
+        window.posthog.capture('experience_card_toggled', {
+            card_id: id,
+            action: wasExpanded ? 'collapsed' : 'expanded'
+        });
+    }
 }
 // ====== 二级下拉切换功能 ======
 function toggleSubExp(event) {
     event.stopPropagation();
     const element = event.currentTarget.closest('.sub-exp-card');
     if (element) {
+        const wasExpanded = element.classList.contains('expanded');
         element.classList.toggle('expanded');
+        
+        // 追踪子项目展开/折叠
+        if (window.posthog) {
+            const title = element.querySelector('h4')?.textContent || 'unknown';
+            window.posthog.capture('sub_experience_toggled', {
+                title: title,
+                action: wasExpanded ? 'collapsed' : 'expanded'
+            });
+        }
     }
 }
 
@@ -71,6 +97,15 @@ const projectUrls = [
 
 function navigateToProject(index) {
     console.log("正在跳转到项目:", index);
+    
+    // 追踪项目卡片点击
+    if (window.posthog) {
+        window.posthog.capture('project_card_clicked', {
+            project_index: index,
+            project_url: projectUrls[index]
+        });
+    }
+    
     // 实际使用时取消下面这行的注释即可跳转
     // window.location.href = projectUrls[index];
     alert("即将跳转到地址: " + projectUrls[index]);
@@ -100,11 +135,27 @@ function updateProjectCarousel() {
 function moveNext() {
     currentProjectIndex = (currentProjectIndex + 1) % totalProjects;
     updateProjectCarousel();
+    
+    // 追踪项目轮播
+    if (window.posthog) {
+        window.posthog.capture('project_carousel_navigated', {
+            direction: 'next',
+            project_index: currentProjectIndex
+        });
+    }
 }
 
 function movePrev() {
     currentProjectIndex = (currentProjectIndex - 1 + totalProjects) % totalProjects;
     updateProjectCarousel();
+    
+    // 追踪项目轮播
+    if (window.posthog) {
+        window.posthog.capture('project_carousel_navigated', {
+            direction: 'previous',
+            project_index: currentProjectIndex
+        });
+    }
 }
 
 function goToProjectSlide(index) {
@@ -136,6 +187,16 @@ function updateSkillCarousel() {
 function moveSkillSlide(direction) {
     currentSkillIndex = (currentSkillIndex + direction + skillSlides.length) % skillSlides.length;
     updateSkillCarousel();
+    
+    // 追踪技能卡片轮播
+    if (window.posthog) {
+        const currentSkillTitle = skillSlides[currentSkillIndex]?.querySelector('.category-name')?.textContent || 'unknown';
+        window.posthog.capture('skill_carousel_navigated', {
+            direction: direction > 0 ? 'next' : 'previous',
+            current_skill: currentSkillTitle,
+            skill_index: currentSkillIndex
+        });
+    }
 }
 
 function goToSkillSlide(index) {

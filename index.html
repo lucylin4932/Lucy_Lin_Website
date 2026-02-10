@@ -925,6 +925,8 @@
                 </div>
             </div>
 
+            <script type="module" src="src/integrations/supabase/client.js"></script>
+            <script type="module" src="src/scripts/posthog.js"></script>
             <script src="src/scripts/main.js"></script>
             <script>
                 // 聊天机器人功能
@@ -948,12 +950,27 @@
                     // 打开/关闭聊天机器人
                     chatbotButton.addEventListener('click', function() {
                         console.log('点击聊天机器人按钮');
+                        const isHidden = chatbotWindow.classList.contains('hidden');
                         chatbotWindow.classList.toggle('hidden');
+                        
+                        // 追踪聊天机器人打开/关闭
+                        if (window.posthog) {
+                            window.posthog.capture('chatbot_toggled', {
+                                action: isHidden ? 'opened' : 'closed'
+                            });
+                        }
                     });
                     
                     closeChatbot.addEventListener('click', function() {
                         console.log('点击关闭聊天机器人');
                         chatbotWindow.classList.add('hidden');
+                        
+                        // 追踪聊天机器人关闭
+                        if (window.posthog) {
+                            window.posthog.capture('chatbot_toggled', {
+                                action: 'closed'
+                            });
+                        }
                     });
                     
                     // 发送消息
@@ -961,6 +978,13 @@
                         const message = chatbotInput.value.trim();
                         console.log('发送消息:', message);
                         if (message) {
+                            // 追踪聊天消息发送
+                            if (window.posthog) {
+                                window.posthog.capture('chatbot_message_sent', {
+                                    message_length: message.length
+                                });
+                            }
+                            
                             // 添加用户消息
                             addMessage('user', message);
                             chatbotInput.value = '';
